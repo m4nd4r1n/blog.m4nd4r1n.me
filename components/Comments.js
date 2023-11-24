@@ -1,9 +1,11 @@
-import 'gitalk/dist/gitalk.css'
-import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
+import { useRouter } from 'next/router'
+
 import cn from 'classnames'
-import { fetchCusdisLang } from '@/lib/cusdisLang'
+import 'gitalk/dist/gitalk.css'
+
 import { useConfig } from '@/lib/config'
+import { fetchCusdisLang } from '@/lib/cusdisLang'
 
 const GitalkComponent = dynamic(
   () => {
@@ -33,8 +35,8 @@ const Comments = ({ frontMatter }) => {
   return (
     <div
       className={cn(
-        'px-4 font-medium text-gray-500 dark:text-gray-400 my-5',
-        fullWidth ? 'md:px-24' : 'mx-auto max-w-2xl',
+        'my-5 px-4 font-medium text-gray-500 dark:text-gray-400',
+        fullWidth ? 'md:px-24' : 'mx-auto max-w-2xl'
       )}
     >
       {BLOG.comment && BLOG.comment.provider === 'gitalk' && (

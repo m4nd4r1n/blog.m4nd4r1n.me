@@ -1,7 +1,8 @@
-import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { useConfig } from '@/lib/config'
+import { useEffect } from 'react'
+
 import * as gtag from '@/lib/gtag'
+import { useConfig } from '@/lib/config'
 
 const Gtag = () => {
   const config = useConfig()

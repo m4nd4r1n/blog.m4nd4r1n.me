@@ -1,5 +1,7 @@
-import { useConfig } from '@/lib/config'
 import { useEffect } from 'react'
+
+import { useConfig } from '@/lib/config'
+
 const Utterances = ({ issueTerm, layout }) => {
   const BLOG = useConfig()
 
@@ -25,11 +27,8 @@ const Utterances = ({ issueTerm, layout }) => {
   })
   return (
     <>
-      <div
-        id="comments"
-        className={layout && layout === 'fullWidth' ? '' : 'md:-ml-16'}
-      >
-        <div className="utterances-frame"></div>
+      <div id='comments' className={layout && layout === 'fullWidth' ? '' : 'md:-ml-16'}>
+        <div className='utterances-frame'></div>
       </div>
     </>
   )

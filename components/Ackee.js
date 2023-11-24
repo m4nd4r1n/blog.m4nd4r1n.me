@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router'
+
 import useAckee from 'use-ackee'
 
 const Ackee = ({ ackeeServerUrl, ackeeDomainId }) => {
