@@ -1,0 +1,83 @@
+export type PostType = 'Post' | 'Page'
+
+export type PostStatus = 'Idea' | 'Revise' | 'Published' | 'Draft'
+
+export type Properties = {
+  id?: string
+  date?: { start_date?: string }
+  type?: [PostType] | string[]
+  slug?: string
+  tags?: string[]
+  summary?: string
+  title?: string
+  status?: [PostStatus] | string[]
+}
+
+export type Post = {
+  date: number
+  fullWidth: boolean
+} & Omit<Properties, 'date'>
+
+export type BlogConfig = {
+  title: string
+  author: string
+  email: string
+  link: string
+  description: string
+  lang: 'en-US' | 'zh-CN' | 'zh-HK' | 'zh-TW' | 'ja-JP' | 'es-ES'
+  timezone: string
+  appearance: 'light' | 'dark' | 'auto'
+  font: 'sans-serif' | 'serif'
+  lightBackground: `#${string}`
+  darkBackground: `#${string}`
+  path: string
+  since?: number
+  postsPerPage: number
+  sortByDate: boolean
+  showAbout: boolean
+  showArchive: boolean
+  autoCollapsedNavBar: boolean
+  ogImageGenerateURL: string
+  socialLink: string
+  seo: {
+    keywords: string[]
+    googleSiteVerification?: string
+  }
+  notionPageId: string | undefined
+  notionAccessToken: string | undefined
+  analytics?: {
+    provider?: 'ga' | ''
+    gaConfig: {
+      measurementId?: string
+    }
+  }
+  comment?: {
+    provider?: 'utterances' | ''
+    utterancesConfig: {
+      repo?: string
+    }
+  }
+  isProd: boolean
+}
+
+export type Locale = {
+  NAV: {
+    INDEX: string
+    RSS: string
+    SEARCH: string
+    ABOUT: string
+  }
+  PAGINATION: {
+    PREV: string
+    NEXT: string
+  }
+  POST: {
+    BACK: string
+    TOP: string
+  }
+  PAGE: {
+    ERROR_404: {
+      MESSAGE: string
+    }
+  }
+}
