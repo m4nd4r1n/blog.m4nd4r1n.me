@@ -1,10 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { forwardRef, useCallback, useEffect, useRef, useState } from 'react'
+import { forwardRef, useCallback, useEffect, useRef } from 'react'
 
 import { useConfig } from '@/lib/config'
 import { useLocale } from '@/lib/locale'
-import useTheme from '@/lib/theme'
 
 type Link = {
   id: number
@@ -47,21 +46,6 @@ interface HeaderProps {
 
 export default function Header({ navBarTitle, fullWidth }: HeaderProps) {
   const BLOG = useConfig()
-  const { dark } = useTheme()
-
-  // Favicon
-
-  const resolveFavicon = useCallback(
-    (fallback = false) => (!fallback && dark ? '/favicon.dark.png' : '/favicon.png'),
-    [dark]
-  )
-  const [favicon, _setFavicon] = useState(resolveFavicon())
-  const setFavicon = useCallback(
-    (fallback = false) => _setFavicon(resolveFavicon(fallback)),
-    [resolveFavicon]
-  )
-
-  useEffect(() => setFavicon(), [setFavicon])
 
   const useSticky = !BLOG.autoCollapsedNavBar
   const navRef = useRef<HTMLDivElement>(null)
@@ -125,13 +109,7 @@ export default function Header({ navBarTitle, fullWidth }: HeaderProps) {
         </svg>
         <div className='flex items-center'>
           <Link href='/' aria-label={BLOG.title}>
-            <Image
-              src={favicon}
-              width={24}
-              height={24}
-              alt={BLOG.title}
-              onError={() => setFavicon(true)}
-            />
+            <Image src='/favicon.png' width={24} height={24} alt={BLOG.title} />
           </Link>
           <HeaderName
             ref={titleRef}
