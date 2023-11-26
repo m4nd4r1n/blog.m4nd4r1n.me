@@ -55,7 +55,6 @@
   overflow-wrap: break-word;
 }
 .notion,
-.notion-text,
 .notion-quote,
 .notion-h-title {
   @apply p-0;
@@ -248,4 +247,14 @@ pre[class*='language-'] {
 
 .nobelium-toggle-content > :last-child {
   @apply mb-0;
+}
+
+.notion-h {
+  @apply w-full;
+}
+.notion-toggle .notion-h {
+  @apply w-fit;
+}
+.notion-hash-link {
+  @apply absolute left-0 top-1/2 float-none -translate-y-1/2 pr-0;
 }
