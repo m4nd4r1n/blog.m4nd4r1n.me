@@ -2,7 +2,7 @@ import App, { type AppContext, type AppProps } from 'next/app'
 import dynamic from 'next/dynamic'
 
 import 'katex/dist/katex.min.css'
-import 'prismjs/themes/prism.css'
+import 'prismjs/themes/prism-coy.css'
 import 'react-notion-x/src/styles.css'
 
 import loadLocale from '@/assets/i18n'
@@ -13,6 +13,7 @@ import { LocaleProvider } from '@/lib/locale'
 import { ThemeProvider } from '@/lib/theme'
 import '@/styles/globals.css'
 import '@/styles/notion.css'
+import '@/styles/prism.css'
 import type { BlogConfig, Locale } from '@/types'
 
 interface AppOwnProps {
