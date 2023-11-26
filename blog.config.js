@@ -34,10 +34,23 @@ const BLOG = {
     }
   },
   comment: {
-    // support provider: utterances
-    provider: '', // leave it empty if you don't need any comment plugin
+    // support provider: utterances, giscus
+    provider: 'giscus', // leave it empty if you don't need any comment plugin
     utterancesConfig: {
       repo: ''
+    },
+    giscusConfig: {
+      repo: 'm4nd4r1n/blog-comment',
+      repoId: 'R_kgDOKHzBrw',
+      category: 'Announcements',
+      categoryId: 'DIC_kwDOKHzBr84CYpHD',
+      mapping: 'pathname',
+      strict: '0',
+      reactionsEnabled: '1',
+      emitMetadata: '0',
+      inputPosition: 'top',
+      lang: 'ko',
+      loading: 'lazy'
     }
   },
   isProd: process.env.NODE_ENV === 'production' // distinguish between development and production environment (ref: https://vercel.com/docs/environment-variables#system-environment-variables)

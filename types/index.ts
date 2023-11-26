@@ -1,3 +1,12 @@
+import type {
+  AvailableLanguage,
+  BooleanString,
+  InputPosition,
+  Loading,
+  Mapping,
+  Repo
+} from '@giscus/react'
+
 export type PostType = 'Post' | 'Page'
 
 export type PostStatus = 'Idea' | 'Revise' | 'Published' | 'Draft'
@@ -52,9 +61,22 @@ export type BlogConfig = {
     }
   }
   comment?: {
-    provider?: 'utterances' | ''
+    provider?: 'utterances' | 'giscus' | ''
     utterancesConfig: {
       repo?: string
+    }
+    giscusConfig: {
+      repo: Repo
+      repoId: string
+      category?: string
+      categoryId?: string
+      mapping: Mapping
+      strict?: BooleanString
+      reactionsEnabled?: BooleanString
+      emitMetadata?: BooleanString
+      inputPosition?: InputPosition
+      lang?: AvailableLanguage
+      loading?: Loading
     }
   }
   isProd: boolean

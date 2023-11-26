@@ -3,11 +3,18 @@ import dynamic from 'next/dynamic'
 import cn from 'classnames'
 
 import { useConfig } from '@/lib/config'
+import useTheme from '@/lib/theme'
 import type { Post } from '@/types'
 
 const UtterancesComponent = dynamic(
   () => {
     return import('@/components/Utterances')
+  },
+  { ssr: false }
+)
+const GiscusComponent = dynamic(
+  () => {
+    return import('@giscus/react')
   },
   { ssr: false }
 )
@@ -18,6 +25,7 @@ interface CommentsProps {
 
 const Comments: React.FC<CommentsProps> = ({ frontMatter }) => {
   const BLOG = useConfig()
+  const { dark } = useTheme()
 
   const fullWidth = frontMatter.fullWidth ?? false
 
@@ -30,6 +38,9 @@ const Comments: React.FC<CommentsProps> = ({ frontMatter }) => {
     >
       {BLOG.comment && BLOG.comment.provider === 'utterances' && (
         <UtterancesComponent issueTerm={frontMatter.id} />
+      )}
+      {BLOG.comment && BLOG.comment.provider === 'giscus' && (
+        <GiscusComponent theme={dark ? 'dark_dimmed' : 'light'} {...BLOG.comment.giscusConfig} />
       )}
     </div>
   )
