@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
 import FormattedDate from '@/components/FormattedDate'
+import TagItem from '@/components/TagItem'
 import { useConfig } from '@/lib/config'
 import type { Post } from '@/types'
 
@@ -23,9 +24,21 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
           </time>
         </header>
         <main>
-          <p className='hidden leading-8 text-gray-700 dark:text-gray-300 md:block'>
-            {post.summary}
-          </p>
+          <p className='leading-8 text-gray-700 dark:text-gray-300'>{post.summary}</p>
+          {post.tags && (
+            <div
+              className='tag-color flex flex-row flex-wrap'
+              style={{
+                paddingTop: '.5em',
+                rowGap: '.7em',
+                columnGap: '.3em'
+              }}
+            >
+              {post.tags.map((tag, i) => (
+                <TagItem key={`${post.id}-${i}`} {...tag} isLink={false} />
+              ))}
+            </div>
+          )}
         </main>
       </article>
     </Link>
