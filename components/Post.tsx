@@ -1,6 +1,7 @@
 import Image from 'next/image'
 
 import cn from 'classnames'
+import { useTheme } from 'next-themes'
 import type { ExtendedRecordMap } from 'notion-types'
 import PropTypes from 'prop-types'
 
@@ -9,7 +10,6 @@ import NotionRenderer from '@/components/NotionRenderer'
 import TableOfContents from '@/components/TableOfContents'
 import TagItem from '@/components/TagItem'
 import { useConfig } from '@/lib/config'
-import useTheme from '@/lib/theme'
 import type { Post } from '@/types'
 
 interface PostProps {
@@ -33,7 +33,8 @@ interface PostProps {
 export default function Post(props: PostProps) {
   const BLOG = useConfig()
   const { post, blockMap, emailHash, fullWidth = false } = props
-  const { dark } = useTheme()
+  const { theme } = useTheme()
+  const dark = theme === 'dark'
 
   return (
     <article className={cn('flex flex-col', fullWidth ? 'md:px-24' : 'items-center')}>
@@ -78,7 +79,7 @@ export default function Post(props: PostProps) {
       <div className='-mt-4 flex flex-col items-center self-stretch lg:flex-row lg:items-stretch'>
         {!fullWidth && <div className='hidden flex-1 lg:block' />}
         <div className={fullWidth ? 'flex-1 pr-4' : 'w-full max-w-2xl flex-none px-4'}>
-          <NotionRenderer recordMap={blockMap} fullPage={false} darkMode={dark ?? undefined} />
+          <NotionRenderer recordMap={blockMap} fullPage={false} darkMode={dark} />
         </div>
         <div
           className={cn(

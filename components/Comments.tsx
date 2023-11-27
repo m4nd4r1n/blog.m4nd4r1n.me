@@ -1,9 +1,10 @@
 import dynamic from 'next/dynamic'
 
 import cn from 'classnames'
+import { useTheme } from 'next-themes'
 
+import ClientLoading from '@/components/ClientLoading'
 import { useConfig } from '@/lib/config'
-import useTheme from '@/lib/theme'
 import type { Post } from '@/types'
 
 const UtterancesComponent = dynamic(
@@ -25,7 +26,8 @@ interface CommentsProps {
 
 const Comments: React.FC<CommentsProps> = ({ frontMatter }) => {
   const BLOG = useConfig()
-  const { dark } = useTheme()
+  const { theme } = useTheme()
+  const dark = theme === 'dark'
 
   const fullWidth = frontMatter.fullWidth ?? false
 
@@ -36,11 +38,17 @@ const Comments: React.FC<CommentsProps> = ({ frontMatter }) => {
         fullWidth ? 'md:px-24' : 'mx-auto max-w-2xl'
       )}
     >
+      {BLOG.comment && <div className='notion-hr my-4' />}
       {BLOG.comment && BLOG.comment.provider === 'utterances' && (
         <UtterancesComponent issueTerm={frontMatter.id} />
       )}
       {BLOG.comment && BLOG.comment.provider === 'giscus' && (
-        <GiscusComponent theme={dark ? 'dark_dimmed' : 'light'} {...BLOG.comment.giscusConfig} />
+        <ClientLoading>
+          <GiscusComponent
+            theme={dark ? 'noborder_dark' : 'light'}
+            {...BLOG.comment.giscusConfig}
+          />
+        </ClientLoading>
       )}
     </div>
   )

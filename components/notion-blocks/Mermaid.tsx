@@ -1,17 +1,17 @@
 import { useEffect, useRef, useState } from 'react'
 
 import mermaid from 'mermaid'
+import { useTheme } from 'next-themes'
 import type { CodeBlock } from 'notion-types'
 import { getTextContent } from 'notion-utils'
-
-import useTheme from '@/lib/theme'
 
 interface MermaidProps {
   block: CodeBlock
 }
 
 export default function Mermaid({ block }: MermaidProps) {
-  const { dark } = useTheme()
+  const { theme } = useTheme()
+  const dark = theme === 'dark'
 
   useEffect(() => {
     mermaid.initialize({ theme: dark ? 'dark' : 'neutral' })

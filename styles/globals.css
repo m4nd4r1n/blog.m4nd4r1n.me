@@ -128,10 +128,6 @@ nav {
   .header-name {
     display: grid;
   }
-  .site-title,
-  .post-title {
-    @apply transition duration-500;
-  }
   .site-description {
     opacity: 0;
     transition: opacity 0.5s cubic-bezier(0.4, 0, 0, 1);
@@ -162,4 +158,39 @@ nav {
 
 .capture-pointer-events * {
   @apply pointer-events-none;
+}
+
+.star {
+  @apply scale-0 transform transition-transform duration-[.4s];
+}
+.dark .star {
+  @apply absolute mt-[5px] h-0 w-0 -translate-y-2 scale-[.3] transform border border-[10px] border-b-[7px] border-t-0 border-transparent border-b-white;
+}
+.dark .star:last-child {
+  @apply translate-x-1.5 translate-y-0 scale-[.4] transform;
+}
+.dark .star::before,
+.dark .star::after {
+  @apply absolute h-0 w-0 border-t-0 content-[""];
+}
+.dark .star::before {
+  @apply left-[1.5px] top-[-7.5px] rotate-[35deg] border border-[3px] border-b-[8px] border-transparent border-b-white;
+}
+.dark .star::after {
+  @apply left-[-4.5px] top-[-7px] rotate-[70deg] border border-[10px] border-b-[7px] border-transparent border-b-white;
+}
+
+.cloud {
+  @apply absolute bottom-0 right-0 h-[10px] w-[10px] rounded-full bg-white;
+  box-shadow:
+    0 -5px 2px 4px white,
+    -8px 1px 2px 6px white,
+    -30px 5px 2px 5px white,
+    -19.5px 10px 2px 8px white;
+  transition: 0.4s;
+}
+
+.dark .cloud {
+  @apply opacity-0;
+  transform: translateY(260%);
 }

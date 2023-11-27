@@ -34,7 +34,7 @@ const Container: React.FC<React.PropsWithChildren<ContainerProps>> = ({
     ...customMeta
   }
   return (
-    <div>
+    <>
       <Head>
         <title>{meta.title}</title>
         {/* <meta content={BLOG.darkBackground} name="theme-color" /> */}
@@ -76,7 +76,7 @@ const Container: React.FC<React.PropsWithChildren<ContainerProps>> = ({
         <Header navBarTitle={layout === 'blog' ? meta.title : null} fullWidth={fullWidth} />
         <main
           className={cn(
-            'flex-grow transition-all',
+            'flex-grow',
             layout !== 'blog' && ['self-center px-4', fullWidth ? 'md:px-24' : 'w-full max-w-2xl']
           )}
         >
@@ -84,7 +84,7 @@ const Container: React.FC<React.PropsWithChildren<ContainerProps>> = ({
         </main>
         <Footer fullWidth={fullWidth} />
       </div>
-    </div>
+    </>
   )
 }
 

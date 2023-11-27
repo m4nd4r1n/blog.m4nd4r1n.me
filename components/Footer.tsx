@@ -11,8 +11,8 @@ const Footer: React.FC<FooterProps> = ({ fullWidth }) => {
   const y = d.getFullYear()
   const from = Number(BLOG.since)
   return (
-    <div
-      className={`m-auto mt-6 w-full flex-shrink-0 text-gray-500 transition-all dark:text-gray-400 ${
+    <footer
+      className={`m-auto mt-6 w-full flex-shrink-0 text-gray-500 dark:text-gray-400 ${
         !fullWidth ? 'max-w-2xl px-4' : 'px-4 md:px-24'
       }`}
     >
@@ -24,7 +24,7 @@ const Footer: React.FC<FooterProps> = ({ fullWidth }) => {
           </p>
         </div>
       </div>
-    </div>
+    </footer>
   )
 }
 

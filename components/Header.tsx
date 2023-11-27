@@ -2,6 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { forwardRef, useCallback, useEffect, useRef } from 'react'
 
+import ClientLoading from '@/components/ClientLoading'
+import ThemeSwitch, { ThemeSwitchSkeleton } from '@/components/ThemeSwitch'
 import { useConfig } from '@/lib/config'
 import { useLocale } from '@/lib/locale'
 
@@ -23,17 +25,20 @@ const NavBar = () => {
   ]
   return (
     <div className='flex-shrink-0'>
-      <ul className='flex flex-row'>
+      <ul className='flex flex-row gap-4'>
         {links.map(
           link =>
             link.show && (
-              <li key={link.id} className='nav ml-4 block text-black dark:text-gray-50'>
+              <li key={link.id} className='nav block text-black dark:text-gray-50'>
                 <Link href={link.to} target={link.external ? '_blank' : undefined}>
                   {link.name}
                 </Link>
               </li>
             )
         )}
+        <ClientLoading fallback={<ThemeSwitchSkeleton />}>
+          <ThemeSwitch />
+        </ClientLoading>
       </ul>
     </div>
   )

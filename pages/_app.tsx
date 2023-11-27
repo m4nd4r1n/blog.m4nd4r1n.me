@@ -2,6 +2,7 @@ import App, { type AppContext, type AppProps } from 'next/app'
 import dynamic from 'next/dynamic'
 
 import 'katex/dist/katex.min.css'
+import { ThemeProvider } from 'next-themes'
 import 'prismjs/themes/prism-coy.css'
 import 'react-notion-x/src/styles.css'
 
@@ -10,7 +11,6 @@ import Scripts from '@/components/Scripts'
 import { ConfigProvider } from '@/lib/config'
 import { prepareDayjs } from '@/lib/dayjs'
 import { LocaleProvider } from '@/lib/locale'
-import { ThemeProvider } from '@/lib/theme'
 import '@/styles/globals.css'
 import '@/styles/notion.css'
 import '@/styles/prism.css'
@@ -28,13 +28,9 @@ export default function MyApp({ Component, pageProps, config, locale }: AppProps
     <ConfigProvider value={config}>
       <Scripts />
       <LocaleProvider value={locale}>
-        <ThemeProvider>
-          <>
-            {process.env.NODE_ENV === 'production' && config?.analytics?.provider === 'ga' && (
-              <Gtag />
-            )}
-            <Component {...pageProps} />
-          </>
+        {process.env.NODE_ENV === 'production' && config?.analytics?.provider === 'ga' && <Gtag />}
+        <ThemeProvider attribute='class' themes={['dark', 'light']} enableSystem={false}>
+          <Component {...pageProps} />
         </ThemeProvider>
       </LocaleProvider>
     </ConfigProvider>

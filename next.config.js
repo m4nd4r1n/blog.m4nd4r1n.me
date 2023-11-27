@@ -1,6 +1,11 @@
+/** @type {import('next').NextConfig} */
 module.exports = {
   images: {
-    domains: ['gravatar.com']
+    remotePatterns: [
+      {
+        hostname: 'gravatar.com'
+      }
+    ]
   },
   async headers() {
     return [

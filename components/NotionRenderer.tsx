@@ -4,13 +4,9 @@ import { createElement as h } from 'react'
 import type { CodeBlock, ExtendedRecordMap } from 'notion-types'
 import { getTextContent } from 'notion-utils'
 import { NotionRenderer as Renderer } from 'react-notion-x'
-import type {
-  MapImageUrlFn,
-  MapPageUrlFn,
-  NotionComponents,
-  SearchNotionFn
-} from 'react-notion-x/build/types'
+import type { MapImageUrlFn, SearchNotionFn } from 'react-notion-x/build/types'
 
+import ClientLoading from '@/components/ClientLoading'
 import Toggle, { type ToggleProps } from '@/components/notion-blocks/Toggle'
 import { FONTS_SANS, FONTS_SERIF } from '@/consts'
 import { useConfig } from '@/lib/config'
@@ -138,7 +134,7 @@ export default function NotionRenderer(props: NotionRendererProps) {
   }
 
   return (
-    <>
+    <ClientLoading>
       <style jsx global>
         {`
           .notion {
@@ -147,14 +143,12 @@ export default function NotionRenderer(props: NotionRendererProps) {
         `}
       </style>
       <Renderer components={components} mapPageUrl={mapPageUrl} {...props} />
-    </>
+    </ClientLoading>
   )
 }
 
 interface NotionRendererProps {
   recordMap: ExtendedRecordMap
-  components?: Partial<NotionComponents>
-  mapPageUrl?: MapPageUrlFn
   mapImageUrl?: MapImageUrlFn
   searchNotion?: SearchNotionFn
   isShowingSearch?: boolean
