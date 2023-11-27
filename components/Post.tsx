@@ -38,6 +38,17 @@ export default function Post(props: PostProps) {
 
   return (
     <article className={cn('flex flex-col', fullWidth ? 'md:px-24' : 'items-center')}>
+      <div
+        className={cn('mb-4 w-full', {
+          'max-w-2xl px-4': !fullWidth
+        })}
+      >
+        <div className='relative h-80'>
+          {post.pageCover && (
+            <Image className='rounded-lg object-cover' src={post.pageCover} alt='cover' fill />
+          )}
+        </div>
+      </div>
       <h1
         className={cn('w-full text-3xl font-bold text-black dark:text-white', {
           'max-w-2xl px-4': !fullWidth
@@ -82,6 +93,7 @@ export default function Post(props: PostProps) {
           </div>
         </nav>
       )}
+
       <div className='-mt-4 flex flex-col items-center self-stretch lg:flex-row lg:items-stretch'>
         {!fullWidth && <div className='hidden flex-1 lg:block' />}
         <div className={fullWidth ? 'flex-1 pr-4' : 'w-full max-w-2xl flex-none px-4'}>

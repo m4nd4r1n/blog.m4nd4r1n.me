@@ -60,6 +60,15 @@ export default {
       backgroundImage: {
         'switch-day': 'linear-gradient(skyblue, cadetblue)',
         'switch-night': 'linear-gradient(-45deg, #222, #000030)'
+      },
+      width: {
+        post: 'calc(100% - 120px)'
+      },
+      maxWidth: {
+        'list-image': '120px'
+      },
+      maxHeight: {
+        'list-image': '120px'
       }
     }
   },

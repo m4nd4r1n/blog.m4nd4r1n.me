@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 import FormattedDate from '@/components/FormattedDate'
@@ -14,8 +15,11 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
 
   return (
     <Link href={`${BLOG.path}/${post.slug}`}>
-      <article key={post.id} className='mb-6 md:mb-8'>
-        <header className='flex flex-col justify-between md:flex-row md:items-baseline'>
+      <article
+        key={post.id}
+        className='relative mb-6 transition-transform ease-out hover:scale-105 hover:opacity-90 md:mb-8'
+      >
+        <header className='w-post flex flex-col justify-between md:items-baseline'>
           <h2 className='mb-2 cursor-pointer text-lg font-medium text-black dark:text-gray-100 md:text-xl'>
             {post.title}
           </h2>
@@ -23,7 +27,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
             <FormattedDate date={post.date} />
           </time>
         </header>
-        <main>
+        <main className='w-post'>
           <p className='leading-8 text-gray-700 dark:text-gray-300'>{post.summary}</p>
           {post.tags && (
             <div
@@ -40,6 +44,14 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
             </div>
           )}
         </main>
+        {post.pageCover && (
+          <Image
+            className='max-h-list-image max-w-list-image my-auto ml-auto rounded-lg object-cover'
+            src={post.pageCover}
+            alt=''
+            fill
+          />
+        )}
       </article>
     </Link>
   )

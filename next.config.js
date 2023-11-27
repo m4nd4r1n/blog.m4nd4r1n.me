@@ -4,6 +4,9 @@ module.exports = {
     remotePatterns: [
       {
         hostname: 'gravatar.com'
+      },
+      {
+        hostname: 'www.notion.so'
       }
     ]
   },

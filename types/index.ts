@@ -29,6 +29,7 @@ export type Post = {
     tag: string
     color: string
   }[]
+  pageCover: string
 } & Omit<Properties, 'date' | 'tags'>
 
 export type BlogConfig = {

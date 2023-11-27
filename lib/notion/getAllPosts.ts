@@ -1,6 +1,8 @@
 import dayjs from 'dayjs'
 import { idToUuid } from 'notion-utils'
 
+import { getPageCovers } from '@/lib/notion/getPageCovers'
+import { getTagColors } from '@/lib/notion/getTagColors'
 import { config as BLOG } from '@/lib/server/config'
 import api from '@/lib/server/notion-api'
 import type { Post } from '@/types'
@@ -23,12 +25,6 @@ export async function getAllPosts({ includePages = false }: { includePages: bool
   const schema = collection?.schema
 
   const rawMetadata = block[id].value
-  const tagColorMap: Record<string, string> = {}
-  const possibleTags = Object.values(schema ?? {}).filter(schema => schema.name === 'tags')[0]
-    ?.options
-  possibleTags?.forEach(tag => {
-    tagColorMap[tag.value] = tag.color
-  })
 
   // Check Type
   if (rawMetadata?.type !== 'collection_view_page' && rawMetadata?.type !== 'collection_view') {
@@ -37,6 +33,8 @@ export async function getAllPosts({ includePages = false }: { includePages: bool
   } else {
     // Construct Data
     const pageIds = getAllPageIds(collectionQuery)
+    const tagColorMap = getTagColors(schema)
+    const pageCoverMap = getPageCovers(block)
     const data: Post[] = []
     for (let i = 0; i < pageIds.length; i++) {
       const id = pageIds[i]
@@ -54,7 +52,8 @@ export async function getAllPosts({ includePages = false }: { includePages: bool
           properties.tags?.map(tag => ({
             tag,
             color: tagColorMap[tag] || 'blue'
-          })) ?? []
+          })) ?? [],
+        pageCover: pageCoverMap[id] ?? ''
       }
 
       data.push(post)
