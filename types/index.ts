@@ -25,7 +25,11 @@ export type Properties = {
 export type Post = {
   date: number
   fullWidth: boolean
-} & Omit<Properties, 'date'>
+  tags: {
+    tag: string
+    color: string
+  }[]
+} & Omit<Properties, 'date' | 'tags'>
 
 export type BlogConfig = {
   title: string

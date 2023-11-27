@@ -25,7 +25,9 @@ export const getStaticProps: GetStaticProps<TagProps, { tag: string }> = async (
   const posts = await getAllPosts({ includePages: false })
   if (!posts || !currentTag) return { notFound: true }
   const tags = getAllTagsFromPosts(posts)
-  const filteredPosts = posts.filter(post => post && post.tags && post.tags.includes(currentTag))
+  const filteredPosts = posts.filter(
+    post => post && post.tags && post.tags.some(({ tag }) => tag === currentTag)
+  )
   return {
     props: {
       tags,

@@ -23,6 +23,12 @@ export async function getAllPosts({ includePages = false }: { includePages: bool
   const schema = collection?.schema
 
   const rawMetadata = block[id].value
+  const tagColorMap: Record<string, string> = {}
+  const possibleTags = Object.values(schema ?? {}).filter(schema => schema.name === 'tags')[0]
+    ?.options
+  possibleTags?.forEach(tag => {
+    tagColorMap[tag.value] = tag.color
+  })
 
   // Check Type
   if (rawMetadata?.type !== 'collection_view_page' && rawMetadata?.type !== 'collection_view') {
@@ -43,7 +49,12 @@ export async function getAllPosts({ includePages = false }: { includePages: bool
         date: (properties.date?.start_date
           ? dayjs.tz(properties.date?.start_date)
           : dayjs(block[id].value?.created_time)
-        ).valueOf()
+        ).valueOf(),
+        tags:
+          properties.tags?.map(tag => ({
+            tag,
+            color: tagColorMap[tag] || 'blue'
+          })) ?? []
       }
 
       data.push(post)

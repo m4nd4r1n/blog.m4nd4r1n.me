@@ -45,6 +45,19 @@ export default function Post(props: PostProps) {
       >
         {post.title}
       </h1>
+      <div
+        className={cn('mt-3 flex w-full', {
+          'max-w-2xl px-4': !fullWidth
+        })}
+      >
+        {post.tags && (
+          <div className='article-tags flex max-w-full flex-nowrap overflow-x-auto'>
+            {post.tags.map(tag => (
+              <TagItem key={tag.tag} {...tag} />
+            ))}
+          </div>
+        )}
+      </div>
       {post.type?.[0] !== 'Page' && (
         <nav
           className={cn('mt-7 flex w-full items-start text-gray-500 dark:text-gray-400', {
@@ -67,13 +80,6 @@ export default function Post(props: PostProps) {
           <div className='mb-4 mr-2 md:ml-0'>
             <FormattedDate date={post.date} />
           </div>
-          {post.tags && (
-            <div className='article-tags flex max-w-full flex-nowrap overflow-x-auto'>
-              {post.tags.map(tag => (
-                <TagItem key={tag} tag={tag} />
-              ))}
-            </div>
-          )}
         </nav>
       )}
       <div className='-mt-4 flex flex-col items-center self-stretch lg:flex-row lg:items-stretch'>

@@ -9,7 +9,7 @@ export function getAllTagsFromPosts(posts: Post[]) {
       .flat()
   ]
   const tagObj: Record<string, number> = {}
-  tags.forEach(tag => {
+  tags.forEach(({ tag }) => {
     if (tag in tagObj) {
       tagObj[tag]++
     } else {
