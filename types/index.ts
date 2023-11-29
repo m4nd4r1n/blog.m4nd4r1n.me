@@ -41,7 +41,6 @@ export type BlogConfig = {
   lang: 'en-US' | 'zh-CN' | 'zh-HK' | 'zh-TW' | 'ja-JP' | 'es-ES'
   timezone: string
   appearance: 'light' | 'dark' | 'auto'
-  font: 'sans-serif' | 'serif'
   lightBackground: `#${string}`
   darkBackground: `#${string}`
   path: string
@@ -51,7 +50,6 @@ export type BlogConfig = {
   showAbout: boolean
   showArchive: boolean
   autoCollapsedNavBar: boolean
-  ogImageGenerateURL: string
   socialLink: string
   seo: {
     keywords: string[]
