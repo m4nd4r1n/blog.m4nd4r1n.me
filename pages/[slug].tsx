@@ -35,9 +35,10 @@ const BlogPost: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       title={post.title}
       description={post.summary}
       slug={post.slug}
-      // date={new Date(post.publishedAt).toISOString()}
+      date={new Date(post.date).toISOString()}
       type='article'
       fullWidth={fullWidth}
+      postId={post.id}
     >
       <Post post={post} blockMap={blockMap} emailHash={emailHash} fullWidth={fullWidth} />
 

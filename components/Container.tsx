@@ -18,6 +18,7 @@ interface ContainerProps {
   type?: string
   image?: string
   keywords?: string[]
+  postId?: string
 }
 
 const Container: React.FC<React.PropsWithChildren<ContainerProps>> = ({
@@ -34,6 +35,7 @@ const Container: React.FC<React.PropsWithChildren<ContainerProps>> = ({
     type: 'website',
     ...customMeta
   }
+  const ogImage = meta.postId ? `${BLOG.link}/api/og?id=${encodeURIComponent(meta.postId)}` : null
   return (
     <>
       <Head>
@@ -50,22 +52,12 @@ const Container: React.FC<React.PropsWithChildren<ContainerProps>> = ({
         <meta property='og:title' content={meta.title} />
         <meta property='og:description' content={meta.description} />
         <meta property='og:url' content={meta.slug ? `${url}/${meta.slug}` : url} />
-        <meta
-          property='og:image'
-          content={`${BLOG.ogImageGenerateURL}/${encodeURIComponent(
-            meta.title
-          )}.png?theme=dark&md=1&fontSize=125px&images=https%3A%2F%2Fnobelium.vercel.app%2Flogo-for-dark-bg.svg`}
-        />
+        {ogImage && <meta property='og:image' content={ogImage} />}
         <meta property='og:type' content={meta.type} />
         <meta name='twitter:card' content='summary_large_image' />
         <meta name='twitter:description' content={meta.description} />
         <meta name='twitter:title' content={meta.title} />
-        <meta
-          name='twitter:image'
-          content={`${BLOG.ogImageGenerateURL}/${encodeURIComponent(
-            meta.title
-          )}.png?theme=dark&md=1&fontSize=125px&images=https%3A%2F%2Fnobelium.vercel.app%2Flogo-for-dark-bg.svg`}
-        />
+        {ogImage && <meta name='twitter:image' content={ogImage} />}
         {meta.type === 'article' && (
           <>
             <meta property='article:published_time' content={meta.date} />
