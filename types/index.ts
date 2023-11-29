@@ -38,7 +38,7 @@ export type BlogConfig = {
   email: string
   link: string
   description: string
-  lang: 'en-US' | 'zh-CN' | 'zh-HK' | 'zh-TW' | 'ja-JP' | 'es-ES'
+  lang: 'en-US' | 'zh-CN' | 'zh-HK' | 'zh-TW' | 'ja-JP' | 'es-ES' | 'ko-KR'
   timezone: string
   appearance: 'light' | 'dark' | 'auto'
   lightBackground: `#${string}`
