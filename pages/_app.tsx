@@ -29,7 +29,7 @@ export default function MyApp({ Component, pageProps, config, locale }: AppProps
       <Scripts />
       <LocaleProvider value={locale}>
         {process.env.NODE_ENV === 'production' && config?.analytics?.provider === 'ga' && <Gtag />}
-        <ThemeProvider attribute='class' themes={['dark', 'light']} enableSystem={false}>
+        <ThemeProvider attribute='class' themes={['dark', 'light']}>
           <Component {...pageProps} />
         </ThemeProvider>
       </LocaleProvider>
