@@ -23,5 +23,6 @@ module.exports = {
       }
     ]
   },
-  transpilePackages: ['dayjs']
+  transpilePackages: ['dayjs'],
+  output: 'standalone'
 }
