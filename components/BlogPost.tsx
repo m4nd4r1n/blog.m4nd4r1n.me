@@ -19,7 +19,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
         key={post.id}
         className='relative mb-6 transition-transform ease-out hover:scale-105 hover:opacity-90 md:mb-8'
       >
-        <header className='w-post flex flex-col justify-between md:items-baseline'>
+        <header className='flex w-post flex-col justify-between md:items-baseline'>
           <h2 className='mb-2 cursor-pointer text-lg font-medium text-black dark:text-gray-100 md:text-xl'>
             {post.title}
           </h2>
@@ -46,7 +46,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
         </main>
         {post.pageCover && (
           <Image
-            className='max-h-list-image max-w-list-image my-auto ml-auto rounded-lg object-cover'
+            className='my-auto ml-auto max-h-list-image max-w-list-image rounded-lg object-cover'
             src={post.pageCover}
             alt=''
             fill

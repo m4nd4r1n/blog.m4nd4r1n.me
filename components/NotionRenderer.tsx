@@ -8,8 +8,6 @@ import type { MapImageUrlFn, SearchNotionFn } from 'react-notion-x/build/types'
 
 import ClientLoading from '@/components/ClientLoading'
 import Toggle, { type ToggleProps } from '@/components/notion-blocks/Toggle'
-import { FONTS_SANS, FONTS_SERIF } from '@/consts'
-import { useConfig } from '@/lib/config'
 
 // Lazy-load some heavy components & override the renderers of some block types
 const components = {
@@ -115,13 +113,6 @@ const mapPageUrl = (id: string) => `https://www.notion.so/${id.replace(/-/g, '')
  * @param props - Anything that react-notion-x/NotionRenderer supports
  */
 export default function NotionRenderer(props: NotionRendererProps) {
-  const config = useConfig()
-
-  const font = {
-    'sans-serif': FONTS_SANS,
-    serif: FONTS_SERIF
-  }[config.font]
-
   // Mark block types to be custom rendered by appending a suffix
   if (props.recordMap) {
     for (const { value: block } of Object.values(props.recordMap.block)) {
@@ -135,13 +126,6 @@ export default function NotionRenderer(props: NotionRendererProps) {
 
   return (
     <ClientLoading>
-      <style jsx global>
-        {`
-          .notion {
-            --notion-font: ${font};
-          }
-        `}
-      </style>
       <Renderer components={components} mapPageUrl={mapPageUrl} {...props} />
     </ClientLoading>
   )

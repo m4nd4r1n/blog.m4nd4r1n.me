@@ -1,6 +1,5 @@
 import type { Config } from 'tailwindcss'
 
-import { FONTS_SANS, FONTS_SERIF } from './consts'
 import { config } from './lib/server/config'
 
 export default {
@@ -39,8 +38,6 @@ export default {
         }
       },
       fontFamily: {
-        sans: FONTS_SANS,
-        serif: FONTS_SERIF,
         noEmoji: [
           '"IBM Plex Sans"',
           'ui-sans-serif',
