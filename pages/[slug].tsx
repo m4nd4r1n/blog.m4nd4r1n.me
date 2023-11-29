@@ -71,16 +71,20 @@ const BlogPost: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
         </a>
       </div>
 
-      <Comments frontMatter={post} />
+      {post.type?.[0] !== 'Page' && (
+        <>
+          <Comments frontMatter={post} />
 
-      <div className={cn('px-4', fullWidth ? 'md:px-24' : 'mx-auto max-w-2xl')}>
-        <HitCounter
-          targetUrl={`${BLOG.link}/${post.slug}`}
-          title='view'
-          titleBgColor='#F9B034'
-          countBgColor='#F69335'
-        />
-      </div>
+          <div className={cn('px-4', fullWidth ? 'md:px-24' : 'mx-auto max-w-2xl')}>
+            <HitCounter
+              targetUrl={`${BLOG.link}/${post.slug}`}
+              title='view'
+              titleBgColor='#F9B034'
+              countBgColor='#F69335'
+            />
+          </div>
+        </>
+      )}
     </Container>
   )
 }

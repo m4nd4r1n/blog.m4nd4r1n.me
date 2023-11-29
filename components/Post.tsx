@@ -43,11 +43,11 @@ export default function Post(props: PostProps) {
           'max-w-2xl px-4': !fullWidth
         })}
       >
-        <div className='relative h-80'>
-          {post.pageCover && (
-            <Image className='rounded-lg object-cover' src={post.pageCover} alt='cover' fill />
-          )}
-        </div>
+        {post.pageCover && (
+          <div className='relative h-64 md:h-80'>
+            <Image className='rounded-lg object-cover' src={post.pageCover} alt='cover' fill />)
+          </div>
+        )}
       </div>
       <h1
         className={cn('w-full text-3xl font-bold text-black dark:text-white', {
