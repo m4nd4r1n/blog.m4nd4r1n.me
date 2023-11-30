@@ -31,5 +31,5 @@ export default function FormattedDate({ date }: FormattedDateProps) {
     }
   }, [isLocaleLoaded, lang])
 
-  return <span>{dayjs(date).format('ll')}</span>
+  return <span suppressHydrationWarning>{dayjs(date).format('ll')}</span>
 }
