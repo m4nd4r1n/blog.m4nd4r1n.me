@@ -25,7 +25,11 @@ const SearchLayout: React.FC<SearchLayoutProps> = ({ tags, posts, currentTag }) 
   }
 
   return (
-    <Container>
+    <Container
+      title={currentTag ?? 'Search'}
+      isTagPage={!!currentTag}
+      slug={currentTag ?? 'search'}
+    >
       <div className='relative'>
         <input
           type='text'

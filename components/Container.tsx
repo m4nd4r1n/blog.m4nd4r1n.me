@@ -19,6 +19,7 @@ interface ContainerProps {
   image?: string
   keywords?: string[]
   postId?: string
+  isTagPage?: boolean
 }
 
 const Container: React.FC<React.PropsWithChildren<ContainerProps>> = ({
@@ -35,14 +36,23 @@ const Container: React.FC<React.PropsWithChildren<ContainerProps>> = ({
     type: 'website',
     ...customMeta
   }
+  const siteUrl =
+    meta.isTagPage && meta.slug
+      ? `${url}/tag/${meta.slug}`
+      : !meta.isTagPage && meta.slug
+        ? `${url}/${meta.slug}`
+        : url
   const ogImage = meta.postId ? `${BLOG.link}/api/og?id=${encodeURIComponent(meta.postId)}` : null
+
   return (
     <>
       <Head>
         <title>{meta.title}</title>
-        {/* <meta content={BLOG.darkBackground} name="theme-color" /> */}
-        <meta name='robots' content='follow, index' />
         <meta charSet='UTF-8' />
+        <meta httpEquiv='Content-Type' content='text/html; charset=utf-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
+        <link rel='canonical' href={siteUrl} />
+        <meta name='robots' content='follow, index' />
         {BLOG.seo.googleSiteVerification && (
           <meta name='google-site-verification' content={BLOG.seo.googleSiteVerification} />
         )}
@@ -51,12 +61,13 @@ const Container: React.FC<React.PropsWithChildren<ContainerProps>> = ({
         <meta property='og:locale' content={BLOG.lang} />
         <meta property='og:title' content={meta.title} />
         <meta property='og:description' content={meta.description} />
-        <meta property='og:url' content={meta.slug ? `${url}/${meta.slug}` : url} />
+        <meta property='og:url' content={siteUrl} />
         {ogImage && <meta property='og:image' content={ogImage} />}
         <meta property='og:type' content={meta.type} />
         <meta name='twitter:card' content='summary_large_image' />
         <meta name='twitter:description' content={meta.description} />
         <meta name='twitter:title' content={meta.title} />
+        <meta name='twitter:url' content={siteUrl} />
         {ogImage && <meta name='twitter:image' content={ogImage} />}
         {meta.type === 'article' && (
           <>
