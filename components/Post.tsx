@@ -45,7 +45,7 @@ export default function Post(props: PostProps) {
       >
         {post.pageCover && (
           <div className='relative h-64 md:h-80'>
-            <Image className='rounded-lg object-cover' src={post.pageCover} alt='cover' fill />)
+            <Image className='rounded-lg object-cover' src={post.pageCover} alt='cover' fill />
           </div>
         )}
       </div>
