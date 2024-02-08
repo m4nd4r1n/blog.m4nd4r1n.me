@@ -1,6 +1,6 @@
 import { Head, Html, Main, NextScript } from 'next/document'
 
-import { monaspace, suit } from '@/lib/fonts'
+import { monaspace, pretendard } from '@/lib/fonts'
 import { config } from '@/lib/server/config'
 
 export default function Document() {
@@ -29,7 +29,7 @@ export default function Document() {
         )}
       </Head>
       <body
-        className={`bg-day motion-safe:transition-all motion-safe:ease-linear dark:bg-night ${suit.variable} ${monaspace.variable}`}
+        className={`bg-day motion-safe:transition-all motion-safe:ease-linear dark:bg-night ${pretendard.variable} ${monaspace.variable} font-sans`}
       >
         <Main />
         <NextScript />

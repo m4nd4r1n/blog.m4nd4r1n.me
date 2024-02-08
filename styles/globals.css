@@ -10,7 +10,6 @@ body::-webkit-scrollbar {
   width: 5px;
 }
 body {
-  font-family: var(--notion-font) !important;
   scrollbar-width: thin;
   scrollbar-color: var(--thumbBG) var(--scrollbarBG);
 }

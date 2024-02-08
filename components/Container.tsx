@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import { useConfig } from '@/lib/config'
-import { monaspace, suit } from '@/lib/fonts'
+import { monaspace, pretendard } from '@/lib/fonts'
 
 interface ContainerProps {
   layout?: 'blog' | 'post' | 'page'
@@ -76,7 +76,7 @@ const Container: React.FC<React.PropsWithChildren<ContainerProps>> = ({
           </>
         )}
       </Head>
-      <div className={`wrapper ${suit.variable} ${monaspace.variable}`}>
+      <div className={`wrapper ${pretendard.variable} ${monaspace.variable}`}>
         <Header navBarTitle={layout === 'blog' ? meta.title : null} fullWidth={fullWidth} />
         <main
           className={cn(

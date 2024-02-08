@@ -1,11 +1,7 @@
 import localFont from 'next/font/local'
 
-export const suit = localFont({
-  src: [
-    {
-      path: '../public/fonts/SUIT-Variable.woff2'
-    }
-  ],
+export const pretendard = localFont({
+  src: [{ path: '../public/fonts/PretendardVariable.woff2' }],
   variable: '--notion-font'
 })
 

@@ -11,7 +11,7 @@ export const config: PageConfig = {
 
 const HOST = `http://${process.env.HOSTNAME ?? 'localhost'}:3000`
 
-const suitBold = fetch(new URL('../../public/fonts/SUIT-Bold.otf', import.meta.url)).then(res =>
+const bold = fetch(new URL('../../public/fonts/Pretendard-Bold.woff', import.meta.url)).then(res =>
   res.arrayBuffer()
 )
 
@@ -20,16 +20,13 @@ const OGImage = async (req: NextRequest) => {
   const id = searchParams.get('id')
   const propertiesRes = await fetch(`${HOST}/api/properties?id=${id}`)
   if (!propertiesRes.ok) return new Response('Not found', { status: 404 })
-  const [properties, suitBoldFont] = await Promise.all([
-    propertiesRes.json() as Promise<Properties>,
-    suitBold
-  ])
+  const [properties, font] = await Promise.all([propertiesRes.json() as Promise<Properties>, bold])
 
   return new ImageResponse(
     (
       <div
         style={{
-          fontFamily: '"SUIT", sans-serif',
+          fontFamily: '"Pretendard", sans-serif',
           display: 'flex',
           height: '100%',
           width: '100%',
@@ -71,8 +68,8 @@ const OGImage = async (req: NextRequest) => {
       height: 630,
       fonts: [
         {
-          name: 'SUIT',
-          data: suitBoldFont,
+          name: 'Pretendard',
+          data: font,
           style: 'normal',
           weight: 700
         }

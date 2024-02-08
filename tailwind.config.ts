@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+import { fontFamily } from 'tailwindcss/defaultTheme'
 
 import { config } from './lib/server/config'
 
@@ -45,7 +46,8 @@ export default {
           '-apple-system',
           'BlinkMacSystemFont',
           'sans-serif'
-        ]
+        ],
+        sans: ['var(--notion-font)', ...fontFamily.sans]
       },
       boxShadow: {
         'switch-day':
