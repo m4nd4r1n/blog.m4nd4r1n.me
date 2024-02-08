@@ -29,7 +29,7 @@ export default function Document() {
         )}
       </Head>
       <body
-        className={`bg-day motion-safe:transition-all motion-safe:ease-linear dark:bg-night ${pretendard.variable} ${monaspace.variable} font-sans`}
+        className={`bg-day motion-safe:transition-all motion-safe:ease-linear dark:bg-night ${pretendard.variable} ${monaspace.variable} font-sans antialiased`}
       >
         <Main />
         <NextScript />
